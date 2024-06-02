@@ -1,0 +1,136 @@
+.container {
+  padding-right: 15px;
+  max-width: 1170px;
+  padding-left: 15px;
+  position: relative;
+  margin: 0 auto;
+}
+.bg-main {
+  background-color: #184157;
+}
+.bg-button-main {
+  background-color: #f47b21;
+}
+.button,
+img {
+  vertical-align: middle;
+}
+p {
+  font-size: 14px;
+  line-height: 20px;
+}
+a {
+  text-decoration: none;
+  color: #fff;
+}
+a:hover {
+  text-decoration: underline;
+}
+nav.header {
+  height: 70px;
+  width: 100%;
+  background-color: #184157;
+  position: fixed;
+  z-index: 9;
+}
+nav .logo {
+  padding-left: 15px;
+  padding-top: 20px;
+  display: inline-block;
+}
+nav .logo a {
+  margin-top: 50px;
+  margin-left: -15px;
+  line-height: normal;
+  font-weight: 600;
+  font-size: 24px;
+}
+nav ul {
+  margin-top: 20px;
+  float: right;
+  list-style: none;
+  display: inline-block;
+}
+nav ul li {
+  display: inline-block;
+  float: left;
+  position: relative;
+  list-style: none;
+}
+nav ul li a {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 35px;
+  margin: 14px 16px;
+}
+nav ul li.status::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 25px;
+  background-color: #47c652;
+  display: inline-block;
+  position: relative;
+  margin-left: 15px;
+  margin-right: -10px;
+}
+nav ul li.login a {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+  padding: 4px 8px 8px 8px;
+}
+nav ul li.cta a {
+  background-color: #f47b21;
+  border-radius: 3px;
+  padding: 4px 8px 8px 8px;
+}
+footer {
+  background-color: #184157;
+  text-align: center;
+  padding: 50px 0;
+  font-size: 14px;
+  color: #fff;
+}
+footer .custom-container {
+  display: flex;
+  justify-content: flex-start;
+}
+footer .custom-container .right_side {
+  width: 27%;
+  font-size: 12px;
+}
+footer .custom-container .right_side .footer_logo {
+  text-align: left;
+}
+footer .custom-container .right_side .social_links {
+  display: flex;
+  margin-top: 20px;
+}
+footer .custom-container .right_side .social_links .social_logo img {
+  width: 25px;
+  height: 25px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+footer ul {
+  list-style: none;
+  text-align: left;
+  width: 196px;
+  font-size: 14px;
+  font-weight: 100;
+}
+footer ul li {
+  line-height: 30px;
+}
+footer ul li:nth-of-type(1) {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+footer .copyright_link {
+  padding-top: 40px;
+  font-size: 13px;
+}
+footer .copyright_text {
+  margin-top: 12px;
+  font-size: 12px;
+}

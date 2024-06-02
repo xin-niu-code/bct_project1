@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weatherstack</title>
+    <link rel="stylesheet" href="../bootstrap_css_js/bootstrap.min.css" />
+    <script src="../bootstrap_css_js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../fontawesome/all.min.css">
+    <link rel="stylesheet" href="../fontawesome/all.min.js">
+    <script src="./homepage.js"></script>
+    <link rel="stylesheet" href="./homepage.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            position: relative;
+            background: #184157;
+            font-family: "Open Sans", "Gill Sans MT", "Gill Sans", Corbel, Arial, sans-serif;
+            line-height: 1.4;
+        }
+        
+        section {
+            width: 100%;
+        }
+        
+        .box {
+            background-color: #ebeff4;
+            padding: 10px;
+        }
+        
+        section.hero {
+            background: url(https://weatherstack.com/site_images/mountains.svg);
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            padding: 140px 0 160px 0;
+        }
+        
+        .hero .container .inline {
+            display: inline-block;
+        }
+        
+        .hero .container h2 {
+            font-weight: 550;
+            margin-bottom: 20px;
+            font-size: 32px;
+            line-height: 40px;
+        }
+        
+        .hero .container h4 {
+            font-weight: 300;
+            font-size: 21px;
+            margin-bottom: 17px;
+            line-height: 25px;
+        }
+        
+        .hero .container .number_customers {
+            font-size: 17px;
+            font-weight: 300;
+            border-radius: 17px;
+            margin-top: 25px;
+            padding: 14px 10px 13px 16px;
+            line-height: 20px;
+            width: 340px;
+            background: rgba(255, 255, 255, 0.1);
+            display: block;
+        }
+        
+        .hero .container .number_customers:before {
+            content: '\f091';
+            font-family: 'Font Awesome 6 Free';
+            display: inline-block;
+            font-weight: 600;
+            position: relative;
+            top: 2px;
+            margin-right: 10px;
+        }
+        
+        .hero .container .cta {
+            background: #f47b21;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .hero .container .button {
+            height: 25px;
+            width: 200px;
+            display: inline-block;
+            cursor: pointer;
+            border-radius: 3px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            margin-right: 5px;
+            margin-top: 40px;
+            padding: 20px 12px 40px 20px;
+            vertical-align: middle;
+            line-height: 1.42857;
+            text-transform: uppercase;
+        }
+        
+        .hero .container .friendly {
+            font-size: 19px;
+            position: relative;
+            top: 20px;
+            font-family: sans-serif;
+        }
+        
+        .weather_animated {
+            height: 290px;
+            width: 470px;
+            position: absolute;
+            border-radius: 10px;
+            right: 20px;
+            top: 14px;
+            border: 4px solid #608094;
+            background-color: #16394c;
+            display: block;
+        }
+        
+        .weather_animated .location {
+            height: 40px;
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .weather_animated .main_left {
+            width: 80px;
+            height: 90px;
+        }
+        
+        .weather_animated .main_left i {
+            width: 140px;
+            height: 137px;
+            left: 50px;
+            float: left;
+        }
+        
+        .weather_animated .main_left {
+            background: url(https://weatherstack.com/site_images/weather_icon_cloud_slight_rain.svg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin-left: 40px;
+            margin-top: -10px;
+        }
+        
+        .weather_animated .main_left span {
+            position: absolute;
+            top: 130px;
+            left: 36px;
+            font-weight: bold;
+            font-size: 14px;
+            width: 100px;
+            text-align: center;
+        }
+        
+        .weather_animated .main_middle span {
+            position: absolute;
+            left: 210px;
+            top: 80px;
+            font-size: 30px;
+        }
+        
+        .weather_animated .main_right {
+            float: right;
+            height: 140px;
+            padding-top: 26px;
+            position: absolute;
+            right: 36px;
+            top: 50px;
+            line-height: 1.5;
+        }
+        
+        .weather_animated .main_right span {
+            display: block;
+            font-size: 13px;
+        }
+        
+        .weather_animated .forecast_week {
+            position: absolute;
+            margin: 30px 0 30px 20px;
+        }
+        
+        .weather_animated .forecast_week .day {
+            display: inline-block;
+            width: 84px;
+            height: 110px;
+            position: relative;
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .weather_animated .forecast_week .day .date {
+            font-weight: 500;
+            font-size: 10px;
+        }
+        
+        .weather_animated .forecast_week .day .full_sun {
+            background: url(https://weatherstack.com/site_images/weather_icon_full_sun.svg);
+            background-size: cover;
+            height: 60px;
+            width: 60px;
+            background-repeat: no-repeat;
+            position: absolute;
+            left: 13px;
+            top: 19px;
+        }
+        
+        .weather_animated .forecast_week .day .full_clouds {
+            background: url(https://weatherstack.com/site_images/weather_icon_full_clouds.svg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 60px;
+            width: 60px;
+            position: absolute;
+            left: 13px;
+            top: 19px;
+        }
+        
+        .weather_animated .forecast_week .day .temperature {
+            position: absolute;
+            bottom: 11px;
+            width: 100%;
+            left: 2px;
+            font-size: 12px;
+            font-weight: 550;
+        }
+        
+        .customers {
+            padding: 40px 0 12px;
+            background: #eff2f5;
+        }
+        
+        .customers ul {
+            list-style: none;
+            text-align: center;
+        }
+        
+        .customers ul li:nth-child(1) {
+            font-weight: 300;
+            font-size: 15px;
+            width: 150px;
+            top: -19px;
+            text-align: left;
+        }
+        
+        .customers ul li {
+            display: inline-block;
+            width: 163px;
+            height: 50px;
+            position: relative;
+        }
+        
+        .customers ul li.deloitte {
+            background: url(https://weatherstack.com/site_images/client_deloitte.svg);
+            background-size: 120px;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .customers ul li.microsoft {
+            background: url(https://weatherstack.com/site_images/client_microsoft.svg);
+            background-size: 135px;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        section.customers ul li.warnerbros {
+            background: url(https://weatherstack.com/site_images/client_warnerbros.svg);
+            background-size: 48px;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        section.customers ul li.wawa {
+            background: url(https://weatherstack.com/site_images/client_wawa.svg);
+            background-size: 85px;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin-bottom: 5px;
+        }
+        
+        section.customers ul li.schneider {
+            background: url(https://weatherstack.com/site_images/client_schneider.svg);
+            background-size: 125px;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin-top: 13px;
+        }
+        
+        section.customers ul li.ericsson {
+            background: url(https://weatherstack.com/site_images/client_ericsson_2.svg);
+            background-size: 50px;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin-right: -70px;
+        }
+        
+        section.show {
+            background: #fff;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        section.show .boxes {
+            background: #eff2f5;
+            border-radius: 5px;
+            padding: 18px 0 19px 0;
+        }
+        
+        section.show .box {
+            display: inline-block;
+            width: 240px;
+            text-align: left;
+            margin: 0 12px;
+            border-radius: 5px;
+            vertical-align: text-top;
+        }
+        
+        section.show .box h5 {
+            font-size: 16px;
+            display: block;
+            margin-top: 12px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        p {
+            line-height: 20px;
+            margin: 0 0 10px;
+        }
+        
+        section.main_feature {
+            background: #fff;
+            padding: 25px 0 65px 0;
+        }
+        
+        section.main_feature .detail {
+            float: left;
+            width: 440px;
+        }
+        
+        section.main_feature .detail h4 {
+            font-size: 27px;
+            font-weight: 300;
+            margin-bottom: 15px;
+        }
+        
+        section.main_feature .detail p {
+            font-size: 17px;
+            margin-bottom: 15px;
+        }
+        
+        section.main_feature .detail ul {
+            list-style: none;
+        }
+        
+        section.main_feature .detail ul li {
+            margin-bottom: 5px;
+            font-size: 17px;
+            line-height: 32px;
+        }
+        
+        section.main_feature .detail ul li i {
+            margin-right: 10px;
+        }
+        
+        section.methods {
+            background: #184157 url(https://weatherstack.com/site_images/bg_waves_4.svg);
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-size: cover;
+            padding: 40px 0 40px 0;
+            color: #fff;
+        }
+        
+        section.methods .example {
+            width: 100px;
+            text-align: center;
+            background-color: #416376;
+            border-radius: 20px;
+            text-transform: uppercase;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-weight: 600;
+            font-size: 14px;
+            margin: 20px auto;
+        }
+        
+        section.methods h4 {
+            font-size: 25px;
+            font-weight: 300;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        section.methods h5 {
+            font-size: 22px;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        section.methods ul {
+            margin-bottom: 20px;
+        }
+        
+        section.methods ul.buttons {
+            list-style: none;
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        section.methods ul li {
+            display: inline-block;
+            margin-left: -3px;
+            margin-right: -2px;
+            text-align: center;
+        }
+        
+        section.methods ul li a:nth-child(1) {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+        
+        section.methods ul li a {
+            width: 235px;
+            display: inline-block;
+            padding: 16px 10px 18px 10px;
+            font-weight: 400;
+            text-decoration: none;
+            color: #000;
+        }
+        
+        section.methods ul li .selected {
+            background: #f47b21;
+            color: #fff;
+        }
+        
+        section.methods ul li:nth-child(3) {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+        
+        section.methods .result pre {
+            width: 675px;
+            background-color: #000;
+            color: #ffce54;
+            font-size: 11px;
+            margin: 0 auto;
+        }
+        
+        section.methods .more_features {
+            margin-top: 40px;
+            margin-left: 40px;
+        }
+        
+        section.methods .more_features ul {
+            list-style: none;
+        }
+        
+        section.methods .more_features ul li {
+            display: inline-block;
+            width: 330px;
+            padding: 14px 20px 15px 20px;
+            margin-bottom: 15px;
+            margin-right: 5px;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            text-align: left;
+        }
+        
+        section.methods .more_features ul li.span {
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 15px;
+            display: block;
+        }
+        
+        section.methods .more_features ul li p {
+            display: block;
+            font-size: 14px;
+            line-height: 20px;
+        }
+        
+        section.grid {
+            background: #fff;
+            padding: 45px 0 50px 0;
+            text-align: center;
+        }
+        
+        section.grid h4 {
+            font-size: 25px;
+            font-weight: 600;
+            font-family: Promo, Helvetica, Arial, sans-serif;
+        }
+        
+        section.grid h5 {
+            font-size: 22px;
+            max-width: 600px;
+            margin: 20px auto 0;
+            font-weight: 100;
+        }
+        
+        section.grid ul {
+            list-style: none;
+            margin-top: 45px;
+        }
+        
+        section.grid ul li {
+            display: inline-block;
+            width: 200px;
+            height: 80px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        section.grid ul li.daimler {
+            background: #263e6a url(https://weatherstack.com/site_images/client_white_daimler.svg);
+            background-size: 175px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        section.grid ul li.deloitte {
+            background: #eef2f5 url(https://weatherstack.com/site_images/client_deloitte.svg);
+            background-color: 150px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        section.grid ul li.ericsson {
+            background: #01275b url(https://weatherstack.com/site_images/client_white_ericsson_2.svg);
+            background-size: 65px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        section.grid ul li.microsoft {
+            background: #eef2f5 url(https://weatherstack.com/site_images/client_microsoft.svg);
+            background-size: 175px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        section.grid ul li.schneider {
+            background: #009e4d url(https://weatherstack.com/site_images/client_white_schneider.svg);
+            background-size: 150px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        section.grid ul li.warnerbros {
+            background: #027ac2 url(https://weatherstack.com/site_images/client_white_warnerbros.svg);
+            background-size: 65px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        section.grid ul li.wawa {
+            background: #ee2e25 url(https://weatherstack.com/site_images/client_white_wawa.svg);
+            background-size: 110px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        section.grid ul li.canda {
+            background: #eef2f5 url(https://weatherstack.com/site_images/client_canda.svg);
+            background-size: 90px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        section.grid ul li.mckinsey {
+            background: #23477f url(https://weatherstack.com/site_images/client_mckinsey.svg);
+            background-size: 220px;
+            background-repeat: no-repeat;
+            background-position: center;
+            padding-left: 10px;
+        }
+        
+        section.grid ul li.rimowa {
+            background: #eef2f5 url(https://weatherstack.com/site_images/client_rimowa.svg);
+            background-size: 155px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        section.cta {
+            background: #eef2f5;
+            background-repeat: no-repeat;
+        }
+        
+        section.cta p {
+            padding: 45px 30px 50px 30px;
+            font-size: 15px;
+            text-align: center;
+            background-color: #eef2f5;
+            background-repeat: no-repeat;
+            display: block;
+            text-transform: uppercase;
+        }
+        
+        section.cta p span {
+            padding-right: 30px;
+            font-weight: 300;
+            position: relative;
+            top: 1px;
+        }
+        
+        section.cta p span::after {
+            content: '\f061';
+            font-family: 'Font Awesome 6 Free';
+            display: inline-block;
+            font-weight: 600;
+            font-size: 20px;
+            margin: 0 0 0 15px;
+        }
+        
+        section.cta a {
+            background: #f47b21;
+            padding: 17px 15px;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 13px;
+            font-weight: 700;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <nav class="header index">
+            <div class="container">
+                <div class="logo">
+                    <a href="/"><img width="202" height="28" src="https://weatherstack.com/site_images/weatherstack_logo_white.png" alt="weatherstack_logo" /></a>
+                </div>
+                <ul>
+                    <li><a href="/product">Pricing</a></li>
+                    <li><a href="/documentation">Documentation</a></li>
+                    <li><a href="/faq">FAQ</a></li>
+                    <li><a href="/affiliates">Affiliates</a></li>
+                    <li><a href="https://blog.weatherstack.com">Blog</a></li>
+                    <li class="status"><a target="_blank" href="https://status/weatherstack.com">Status</a></li>
+                    <li class="action login"><a href="/login">Log In</a></li>
+                    <li class="action cta"><a href="/signup/free">SIGN UP FREE</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <section class="hero index">
+            <div class="container">
+                <div class="hero_main">
+                    <div class="inline">
+                        <h2>
+                            Real-Time & Historical
+                            <br /> World Weather Data API
+                        </h2>
+                        <h4>
+                            Retrieve instant, accurate weather information for
+                            <br /> any location in the world in lightweigth JSON format
+                        </h4>
+                        <span class="number_customers">Trusted by 75,000 companies worldwide</span
+              >
+              <a class="button cta" href="/signup/free">Start using the API</a>
+              <span class="friendly">-It's free!</span>
+                    </div>
+
+                    <div class="weather_animated">
+                        <div class="location" style="padding-bottom: 0px">
+                            <span>South Brisbane, Queensland, Australia</span>
+                        </div>
+                        <div class="main_left">
+                            <i><img src="./images/b.jpg" alt="" /></i>
+                            <span>Partly Cloudy</span>
+                        </div>
+                        <div class="main_middle">
+                            <span class="temperature">28°c</span>
+                        </div>
+                        <div class="main_right">
+                            <span>Wind:17 kmph</span>
+                            <span>Precip: 0 mm</span>
+                            <span>Pressure: 1012 mb</span>
+                        </div>
+                        <div class="forecast_week">
+                            <div class="day">
+                                <span class="date">WED</span>
+                                <i class="full_sun"></i>
+                                <span class="temperature">24°c</span>
+                            </div>
+                            <div class="day">
+                                <span class="date">THU</span>
+                                <i class="full_sun"></i>
+                                <span class="temperature">23°C</span>
+                            </div>
+                            <div class="day">
+                                <span class="date">FRI</span>
+                                <i class="full_clouds"></i>
+                                <span class="temperature">23°C</span>
+                            </div>
+                            <div class="day">
+                                <span class="date">SAT</span>
+                                <i class="full_sun"></i>
+                                <span class="temperature">23°C</span>
+                            </div>
+                            <div class="day">
+                                <span class="date">SUN</span>
+                                <i class="full_sun"></i>
+                                <span class="temperature">22°C</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="customers">
+            <div class="container">
+                <ul>
+                    <li>Happy Customers:</li>
+                    <li class="deloitte"></li>
+                    <li class="microsoft"></li>
+                    <li class="warnerbros"></li>
+                    <li class="wawa"></li>
+                    <li class="schneider"></li>
+                    <li class="ericsson"></li>
+                </ul>
+            </div>
+        </section>
+        <section class="show">
+            <div class="container">
+                <div class="boxes">
+                    <div class="box realtime">
+                        <i class="fa-solid fa-rotate" style="font-size:20px"></i>
+                        <h5 class="heading">Real-Time, History, Forecast</h5>
+                        <p>
+                            Our API covers global weather data across the board — from a multi-year history all the way to live information and accurate weather forecasts.
+                        </p>
+                    </div>
+                    <div class="box locations">
+                        <i class="fa-solid fa-location-pin " style="font-size:20px"></i>
+                        <h5>Millions of Locations</h5>
+                        <p>
+                            Make use of live or hour-by-hour weather data for millions of cities and towns worldwide, supporting a variety methods to look up any location.
+                        </p>
+                    </div>
+                    <div class="box uptime ">
+                        <i class="fa-regular fa-clock " style="font-size:20px "></i>
+                        <h5>Rock-Solid Uptime & Speed</h5>
+                        <p>
+                            Powered by best-in-class cloud infrastructure, our API delivers data in milliseconds around the clock with an uptime of nearly 100%.
+                        </p>
+                    </div>
+                    <div class="box price ">
+                        <i class="fa-regular fa-clipboard " style="font-size:20px "></i>
+                        <h5>Start Free, Upgrade Later</h5>
+                        <p>
+                            Start testing the API immediately by signing up for our Free Plan. You can always upgrade later — no strings attached.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="main_feature ">
+            <div class="container ">
+                <div class="detail ">
+                    <h4>Access to Global Weather Data, Developer-friendly</h4>
+                    <p>
+                        Get instant access to accurate weather data for any geo-point in the world and enjoy a rich set of capabilities:
+                    </p>
+                    <ul>
+                        <li class="realtime"><i class="fa-solid fa-rotate" style="font-size: 22px"></i>Real-Time Weather API</li>
+                        <li class="historical"><i class="fa-regular fa-clock " style="font-size:22px "></i>Historical Weather API</li>
+                        <li class="forecast"><i class="fa-regular fa-calendar" style="font-size:22px "></i>Weather Forecasts API</li>
+                        <li class="autocomplete"><i class="fa-solid fa-location-pin" style="font-size:22px "></i>Location Autocomplete</li>
+                        <li class="bulk"><i class="fa-solid fa-layer-group" style="font-size:22px "></i>Bulk API Endpoint</li>
+                    </ul>
+                </div>
+                <img src="https://weatherstack.com/site_images/world_map_vector.svg " alt="World Weather Map " width="635" height="347" style="padding-left:80px" />
+            </div>
+        </section>
+        <section class="methods ">
+            <div class="container ">
+                <div class="example">Example</div>
+                <h4>Complete Weather Data Coverage</h4>
+                <h5>
+                    Get years of historical weather data, request real-time weather information or make use of accurate weather forecasts.
+                </h5>
+                <ul class="buttons">
+                    <li><a data-endpoint-select="current" class="selected" href="javascript:void(0)">Current Weather</a></li>
+                    <li><a data-endpoint-select="history" href="javascript:void(0)">Weather History</a></li>
+                    <li><a data-endpoint-select="forecast" href="javascript:void(0)">Weather Forecast</a></li>
+                </ul>
+
+                <div class="result">
+                    <pre style="display: block;" class="prettyprint" data-endpoint="current">
+{
+    "request": {
+        "type": "City",
+        "query": "San Francisco, United States of America",
+        "language": "en",
+        "unit": "m"
+    },
+    "location": {
+        "name": "San Francisco",
+        "country": "United States of America",
+        "region": "California",
+        "lat": "37.775",
+        "lon": "-122.418",
+        "timezone_id": "America/Los_Angeles",
+        "localtime": "2019-09-03 05:35",
+        "localtime_epoch": 1567488900,
+        "utc_offset": "-7.0"
+    },
+    "current": {
+        "observation_time": "12:35 PM",
+        "temparature": 16,
+        "weather_code": 122,
+        "weather_icons": [
+            "https://assets.weatherstack.com/images/symbol.png"
+        ],
+        "weather_descriptions": [
+            "Overcast"
+        ],
+    "wind_speed": 17,
+    "wind_degree": 260,
+    "wind_dir": "W",
+    "pressure": 1016,
+    "precip": 0,
+    "humidity": 87,
+    "cloudcover": 100,
+    "feelslike": 16,
+    "uv_index": 0,
+    "visibility": 16
+    }
+}
+</pre>
+
+                    <pre style="display: none;" class="prettyprint" data-endpoint="history">
+{
+    "request": {
+        "type": "City",
+        "query": "New York, United States of America",
+        "language": "en",
+        "unit": "m"
+    },
+    "location": {
+        "name": "New York",
+        "country": "United States of America",
+        "region": "New York",
+        "lat": "40.714",
+        "lon": "-74.006",
+        "timezone_id": "America/New_York",
+        "localtime": "2019-09-08 09:36",
+        "localtime_epoch": 1567935360,
+        "utc_offset": "-4.0"
+    },
+    "current": {
+        "observation_time": "01:36 PM",
+        "temparature": 18,
+        "weather_code": 113,
+        "weather_icons": [
+            "https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0001_sunny.png"
+        ],
+        "weather_descriptions": [
+            "Sunny"
+        ],
+        "wind_speed": 7,
+        "wind_degree": 270,
+        "wind_dir": "W",
+        "pressure": 1018,
+        "precip": 0,
+        "humidity": 70,
+        "cloudcover": 0,
+        "feelslike": 18,
+        "uv_index": 5,
+        "visibility": 16
+    },
+    "historical": {
+        "2013-07-01": {
+            "date": "2013-07-01",
+            "date_epoch": 1372636800,
+            "astro": {
+                "sunrise": "05:29 AM",
+                "sunset": "08:31 PM",
+                "moonrise": "12:59 AM",
+                "moonset": "02:42 PM",
+                "moon_phase": "Last Quarter",
+                "moon_illumination": 40
+            },
+            "mintemp": 21,
+            "maxtemp": 25,
+            "avgtemp": 22,
+            "totalsnow": 0,
+            "sunhour": 12.5,
+            "uv_index": 5
+        }
+    }
+}
+</pre>
+
+
+
+                    <pre style="display: none;" class="prettyprint" data-endpoint="forecast">
+{
+    "request": {
+        "type": "City",
+        "query": "Chicago, United States of America",
+        "language": "en",
+        "unit": "m"
+    },
+    "location": {
+        "name": "Chicago",
+        "country": "United States of America",
+        "region": "Illinois",
+        "lat": "41.850",
+        "lon": "-87.650",
+        "timezone_id": "America/Chicago",
+        "localtime": "2019-09-08 08:39",
+        "localtime_epoch": 1567931940,
+        "utc_offset": "-5.0"
+    },
+    "current": {
+        "observation_time": "01:39 PM",
+        "temparature": 19,
+        "weather_code": 122,
+        "weather_icons": [
+            "https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0004_black_low_cloud.png"
+        ],
+        "weather_descriptions": [
+            "Overcast"
+        ],
+        "wind_speed": 17,
+        "wind_degree": 100,
+        "wind_dir": "E",
+        "pressure": 1019,
+        "precip": 0,
+        "humidity": 73,
+        "cloudcover": 100,
+        "feelslike": 19,
+        "uv_index": 4,
+        "visibility": 16
+    },
+    "forecast": {
+        "2019-09-08": {
+            "date": "2019-09-08",
+            "date_epoch": 1567900800,
+            "astro": {
+                "sunrise": "06:23 AM",
+                "sunset": "07:13 PM",
+                "moonrise": "04:25 PM",
+                "moonset": "12:58 AM",
+                "moon_phase": "First Quarter",
+                "moon_illumination": 62
+            },
+            "mintemp": 10,
+            "maxtemp": 18,
+            "avgtemp": 16,
+            "totalsnow": 0,
+            "sunhour": 6.5,
+            "uv_index": 4
+        }
+    }
+}
+</pre>
+                    <div class="result "></div>
+                    <div class="more_features ">
+                        <ul>
+                            <li class="sources ">
+                                <span class="heading ">Reliable Data Sources</span>
+                                <p>
+                                    Powered by a strong backbone of data sources, our weather data API comes with the highest level of reliability, consistency and accuracy.
+                                </p>
+                            </li>
+                            <li class="speed ">
+                                <span class="heading ">Lightning-fast Response</span>
+                                <p>
+                                    Weather data is delivered in lightweight JSON format to ensure a high level of speed and compatibility with any programming language.
+                                </p>
+                            </li>
+                            <li class="scalable ">
+                                <span class="heading ">Scalable Infrastructure</span>
+                                <p>
+                                    Our REST API is backed by scalable cloud infrastructure built and maintained by apilayer, capable of handling billions of requests per day.
+                                </p>
+                            </li>
+                            <li class="location_lookup ">
+                                <span class="heading ">Flexible Location Lookup</span>
+                                <p>
+                                    Millions of locations can be looked up by city or region name, ZIP code, IP address, or even using latitude and longitude coordinates.
+                                </p>
+                            </li>
+                            <li class="security ">
+                                <span class="heading ">Bank-Level Security</span>
+                                <p>
+                                    All data streams sent to and from the weatherstack API are secured using industry-standard 256-bit HTTPS (SSL) encryption.
+                                </p>
+                            </li>
+                            <li class="api_docs ">
+                                <span class="heading ">Extensive API Documentation</span>
+                                <p>
+                                    An API is only as good as its documentation, which is why a series of interactive code examples in multiple languages are waiting for you.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+        </section>
+        <section class="grid ">
+            <div class="container ">
+                <h4>
+                    Join more than 75,000 companies worldwide using the weatherstack API
+                </h4>
+                <h5>
+                    We are proud of delivering accurate weather data to some of the smartest brands out there.
+                </h5>
+                <ul>
+                    <li class="daimler "></li>
+                    <li class="deloitte "></li>
+                    <li class="ericsson "></li>
+                    <li class="microsoft "></li>
+                    <li class="schneider "></li>
+                    <li class="warnerbros "></li>
+                    <li class="wawa "></li>
+                    <li class="canda "></li>
+                    <li class="mckinsey "></li>
+                    <li class="rimowa "></li>
+                </ul>
+            </div>
+        </section>
+        <section class="cta ">
+            <div class="container ">
+                <p>
+                    <span>Sign up for our Free Plan to get instant access to weather data</span>
+                    <a href="/signup/free ">Get Free API Access</a>
+                </p>
+            </div>
+        </section>
+        <footer>
+            <div class="container custom-container">
+                <div class="right_side copyright_section">
+                    <div class="footer_logo">
+                        <a href="/"><img src="https://weatherstack.com/site_images/weatherstack_logo_footer.png" alt="weatherstack logo" width="197" height="35" /></a>
+                    </div>
+                    <div class="social_links">
+                        <div class="github social_logo">
+                            <a href="https://github.com/apilayer/weatherstack" target="_blank"><img src="https://weatherstack.com/site_images/github-original.svg" alt="" /></a>
+                        </div>
+                        <div class="facebook social_logo">
+                            <a href="https://www.facebook.com/APILayer/" target="_blank"><img src="https://weatherstack.com/site_images/facebook-original.svg" alt="" /></a>
+                        </div>
+                        <div class="instagram social_logo">
+                            <a href="https://www.instagram.com/apilayer/" target="_blank"><img src="https://weatherstack.com/site_images/instagram.png" alt="" /></a>
+                        </div>
+                        <div class="youtube social_logo">
+                            <a href="https://www.youtube.com/channel/UCwDncja3klyMhkKXWV1zoNQ" target="_blank"><img src="https://weatherstack.com/site_images/youtube.png" alt="" /></a>
+                        </div>
+                        <div class="twitter social_logo">
+                            <a href="https://twitter.com/apilayer/" target="_blank"><img src="https://weatherstack.com/site_images/twitter-original.svg" alt="" /></a>
+                        </div>
+                        <div class="linkedin social_logo">
+                            <a href="https://www.linkedin.cn/incareer/home" target="_blank"><img src="https://weatherstack.com/site_images/linkedin-original.svg" alt="" /></a>
+                        </div>
+                    </div>
+                </div>
+                <ul>
+                    <li>
+                        </a>Product</li>
+                    <li><a href="/product" hreflang="en">Pricing</a></li>
+                    <li><a target="_blank" href="https://apilayer.com/provider" hreflang="en">List Your API</a></li>
+                    <li><a target="_blank" href="https://apilayer.com/marketplace" hreflang="en">Marketplace</a></li>
+                    <li><a target="_blank" href="https://apilayer.com/why-choose-apilayer" hreflang="en">Why choose us?</a></li>
+                    <li><a title="Affiliate Program" href="/affiliates">Affiliates</a></li>
+                </ul>
+                <ul>
+                    <li>DOCS & HELP</li>
+                    <li><a href="/documentation" hreflang="en">Documentation</a></li>
+                    <li><a href="https://blog.weatherstack.com/" hreflang="en">Blog</a></li>
+                    <li><a href="/faq" hreflang="en">FAQs</a></li>
+                    <li><a href="/api-glossary" hreflang="en">API Glossary</a></li>
+                </ul>
+                <ul>
+                    <li>ACCOUNT</li>
+                    <li><a href="/login" hreflang="en">Log In</a></li>
+                    <li><a href="/forgot" hreflang="en">Forgot Password</a></li>
+                    <li><a href="/signup/free" hreflang="en">FREE Signup</a></li>
+                </ul>
+                <ul>
+                    <li>GET IN TOUCH</li>
+                    <li><a href="" class="apilayer-support" hreflang="en">Contact</a></li>
+                    <li><a href="" class="apilayer-support" hreflang="en">Get a quote</a></li>
+                </ul>
+
+            </div>
+
+            <div class="container">
+                <div class="copyright_link">
+                    <a target="_blank" href="https://www.ideracorp.com/legal/APILayer">Imprint / Legal</a>&nbsp;|&nbsp;
+                    <a target="_blank" href="https://www.ideracorp.com/Legal/APILayer/PrivacyStatement">Privacy</a> &nbsp;|&nbsp;
+                    <a target="_blank" href="https://www.ideracorp.com/Legal/Terms-of-Use">Terms</a>&nbsp;|&nbsp;
+                    <a target="_blank" href="https://www.ideracorp.com/Legal/APILayer/PrivacyStatement">Cookie Preference</a>&nbsp;|&nbsp;
+                    <a href="https://weatherstack.com/sitemap.php">Sitemap</a>
+                </div>
+                <div class="copyright_text">
+                    <span>
+                    © 2022 Weatherstack API, an
+                    <a href="https://apilayer.com/">APILayer</a>product. All rights reserved.
+                </span>
+                </div>
+            </div>
+        </footer>
+        </div>
+</body>
+
+</html>
